@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ももちゃん育成ゲーム 🍑</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-button">🏠 ホームに戻る</a>
+            <h1>🍑 ももちゃん育成ゲーム 🍑</h1>
+        </header>
+
+        <div class="game-area">
+            <!-- ももちゃん表示エリア -->
+            <div class="character-display">
+                <div id="character" class="character">
+                    <div class="character-emoji">👶</div>
+                    <div class="character-name">ももちゃん</div>
+                    <div class="character-age" id="ageDisplay">0歳0ヶ月</div>
+                </div>
+            </div>
+
+            <!-- ステータス表示 -->
+            <div class="status-panel">
+                <div class="status-item">
+                    <span class="status-label">🍚 満腹度</span>
+                    <div class="status-bar">
+                        <div id="hungerBar" class="status-fill hunger"></div>
+                    </div>
+                    <span id="hungerValue" class="status-value">100</span>
+                </div>
+
+                <div class="status-item">
+                    <span class="status-label">😊 ご機嫌</span>
+                    <div class="status-bar">
+                        <div id="happinessBar" class="status-fill happiness"></div>
+                    </div>
+                    <span id="happinessValue" class="status-value">100</span>
+                </div>
+
+                <div class="status-item">
+                    <span class="status-label">⚡ 体力</span>
+                    <div class="status-bar">
+                        <div id="energyBar" class="status-fill energy"></div>
+                    </div>
+                    <span id="energyValue" class="status-value">100</span>
+                </div>
+            </div>
+
+            <!-- メッセージ表示 -->
+            <div class="message-box" id="messageBox">
+                <p id="messageText">ももちゃんが生まれました！大切に育ててね！</p>
+            </div>
+
+            <!-- 操作ボタン -->
+            <div class="action-buttons">
+                <button class="action-btn feed-btn" onclick="feedMomo()">
+                    <span class="btn-icon">🍚</span>
+                    <span class="btn-text">ごはん</span>
+                </button>
+                <button class="action-btn play-btn" onclick="playWithMomo()">
+                    <span class="btn-icon">🎮</span>
+                    <span class="btn-text">あそぶ</span>
+                </button>
+                <button class="action-btn sleep-btn" onclick="sleepMomo()">
+                    <span class="btn-icon">😴</span>
+                    <span class="btn-text">ねる</span>
+                </button>
+                <button class="action-btn clean-btn" onclick="cleanRoom()">
+                    <span class="btn-icon">🧹</span>
+                    <span class="btn-text">そうじ</span>
+                </button>
+            </div>
+
+            <!-- ゲーム情報 -->
+            <div class="game-info">
+                <button class="info-btn" onclick="resetGame()">🔄 リセット</button>
+                <button class="info-btn" onclick="saveGame()">💾 保存</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>💝 ももちゃんを大人になるまで育てよう！ 💝</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

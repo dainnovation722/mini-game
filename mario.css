@@ -1,0 +1,290 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+    background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #f12711 0%, #f5af19 100%);
+    padding: 25px;
+    text-align: center;
+    position: relative;
+}
+
+.back-button {
+    display: inline-block;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-50%) scale(1.05);
+}
+
+header h1 {
+    color: white;
+    font-size: 28px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+.game-area {
+    padding: 30px 25px;
+}
+
+/* ゲーム情報 */
+.game-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+    border-radius: 15px;
+}
+
+.info-item {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2d3436;
+}
+
+.label {
+    margin-right: 5px;
+}
+
+/* キャンバス */
+.canvas-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #5dade2;
+}
+
+/* オーバーレイ画面 */
+.overlay-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.overlay-screen h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.instructions {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.result {
+    margin-bottom: 30px;
+}
+
+.final-score, .final-coins {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffd93d;
+    margin-bottom: 10px;
+}
+
+/* ボタン */
+.game-button {
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #f12711 0%, #f5af19 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(241, 39, 17, 0.4);
+    margin: 10px;
+}
+
+.game-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(241, 39, 17, 0.6);
+}
+
+.game-button:active {
+    transform: scale(0.98);
+}
+
+.game-button.retry {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.game-button.home {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* モバイル用仮想ボタン */
+.mobile-controls {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.dpad {
+    display: flex;
+    gap: 15px;
+}
+
+.action-btns {
+    display: flex;
+    gap: 15px;
+}
+
+.control-btn {
+    width: 70px;
+    height: 70px;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.btn-left, .btn-right {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 24px;
+}
+
+.btn-jump {
+    background: linear-gradient(135deg, #f12711 0%, #f5af19 100%);
+    color: white;
+    width: 90px;
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* 操作説明 */
+.controls-info {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.controls-info p {
+    margin: 8px 0;
+    color: #495057;
+    font-size: 14px;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 22px;
+    }
+
+    .back-button {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .mobile-controls {
+        display: flex;
+    }
+
+    .overlay-screen h2 {
+        font-size: 28px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .game-button {
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-controls {
+        display: none !important;
+    }
+}

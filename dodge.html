@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ボール回避サバイバル ⚽</title>
+    <link rel="stylesheet" href="dodge.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-button">🏠 ホームに戻る</a>
+            <h1>⚽ ボール回避サバイバル ⚽</h1>
+        </header>
+
+        <div class="game-area">
+            <!-- ゲーム情報 -->
+            <div class="game-info" style="display: none;">
+                <div class="info-left">
+                    <div class="life-display">
+                        <span class="label">ライフ:</span>
+                        <span id="lifeDisplay">❤️❤️❤️</span>
+                    </div>
+                </div>
+                <div class="info-right">
+                    <div class="score-display">
+                        <div class="current-score">
+                            <span class="label">生存時間:</span>
+                            <span id="currentScore">0</span>秒
+                        </div>
+                        <div class="best-score">
+                            <span class="label">最高記録:</span>
+                            <span id="bestScore">0</span>秒
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ゲームキャンバス -->
+            <div class="canvas-wrapper">
+                <canvas id="gameCanvas" width="800" height="600"></canvas>
+                
+                <!-- スタート画面 -->
+                <div id="startScreen" class="overlay-screen">
+                    <h2>ボール回避サバイバル</h2>
+                    <p class="instructions">
+                        矢印キー（↑↓←→）/WASD/マウス/タッチで移動<br>
+                        増殖するボールを避けて生き残ろう！
+                    </p>
+                    <button class="game-button" onclick="startGame()">ゲームスタート</button>
+                </div>
+
+                <!-- ゲームオーバー画面 -->
+                <div id="gameOverScreen" class="overlay-screen" style="display: none;">
+                    <h2>ゲームオーバー</h2>
+                    <div class="result">
+                        <p class="survival-time">生存時間: <span id="finalScore">0</span>秒</p>
+                        <p class="evaluation" id="evaluation">もう少し頑張ろう！</p>
+                    </div>
+                    <div class="button-group">
+                        <button class="game-button retry" onclick="restartGame()">もう一度</button>
+                        <button class="game-button home" onclick="location.href='index.html'">ホームへ</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 操作説明 -->
+            <div class="controls-info">
+                <p>🎮 <strong>操作:</strong> 矢印キー ↑↓←→ / WASD / マウス / タッチ</p>
+                <p>⚠️ <strong>ルール:</strong> ボールに当たるとライフが減ります。3回当たるとゲームオーバー！</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="dodge.js"></script>
+</body>
+</html>

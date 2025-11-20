@@ -1,0 +1,304 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+    background: linear-gradient(135deg, #ffeef8 0%, #ffe6f0 50%, #ffd6e8 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    padding: 25px;
+    text-align: center;
+    position: relative;
+}
+
+.back-button {
+    display: inline-block;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-50%) scale(1.05);
+}
+
+header h1 {
+    color: white;
+    font-size: 28px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 2px;
+}
+
+.game-area {
+    padding: 30px 25px;
+}
+
+/* キャラクター表示 */
+.character-display {
+    text-align: center;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #fff5f7 0%, #ffe6f0 100%);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.15);
+}
+
+.character {
+    animation: float 3s ease-in-out infinite;
+}
+
+.character-emoji {
+    font-size: 100px;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+}
+
+.character-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff69b4;
+    margin-bottom: 8px;
+}
+
+.character-age {
+    font-size: 16px;
+    color: #ff1493;
+    font-weight: 600;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ステータスパネル */
+.status-panel {
+    background: #fff;
+    border: 3px solid #ffe6f0;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.status-item:last-child {
+    margin-bottom: 0;
+}
+
+.status-label {
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 100px;
+    color: #333;
+}
+
+.status-bar {
+    flex: 1;
+    height: 25px;
+    background: #f0f0f0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #ddd;
+}
+
+.status-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+.status-fill.hunger {
+    background: linear-gradient(90deg, #ff6b6b, #ff8787);
+}
+
+.status-fill.happiness {
+    background: linear-gradient(90deg, #ffd93d, #ffed4e);
+}
+
+.status-fill.energy {
+    background: linear-gradient(90deg, #51cf66, #69db7c);
+}
+
+.status-value {
+    min-width: 35px;
+    text-align: right;
+    font-weight: bold;
+    color: #666;
+}
+
+/* メッセージボックス */
+.message-box {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+    border: 3px solid #b39ddb;
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-box p {
+    color: #5e35b1;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* アクションボタン */
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.action-btn {
+    padding: 20px;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-icon {
+    font-size: 32px;
+}
+
+.btn-text {
+    font-size: 14px;
+}
+
+.feed-btn {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    color: white;
+}
+
+.play-btn {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    color: white;
+}
+
+.sleep-btn {
+    background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+    color: white;
+}
+
+.clean-btn {
+    background: linear-gradient(135deg, #fdcbf1 0%, #e6dee9 100%);
+    color: white;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn:active {
+    transform: translateY(0px);
+}
+
+.action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ゲーム情報ボタン */
+.game-info {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.info-btn {
+    padding: 12px 20px;
+    background: #f5f5f5;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.info-btn:hover {
+    background: #e0e0e0;
+    border-color: #bbb;
+}
+
+footer {
+    background: linear-gradient(135deg, #ffd1dc 0%, #ffc1d4 100%);
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    color: #d81b60;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 22px;
+    }
+
+    .character-emoji {
+        font-size: 80px;
+    }
+
+    .action-buttons {
+        grid-template-columns: 1fr;
+    }
+}

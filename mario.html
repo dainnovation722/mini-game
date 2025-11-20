@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ジャンプアドベンチャー 🍄</title>
+    <link rel="stylesheet" href="mario.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-button">🏠 ホームに戻る</a>
+            <h1>🍄 ジャンプアドベンチャー 🍄</h1>
+        </header>
+
+        <div class="game-area">
+            <!-- ゲーム情報 -->
+            <div class="game-info">
+                <div class="info-item">
+                    <span class="label">スコア:</span>
+                    <span id="scoreDisplay">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">コイン:</span>
+                    <span id="coinDisplay">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">ライフ:</span>
+                    <span id="lifeDisplay">❤️❤️❤️</span>
+                </div>
+            </div>
+
+            <!-- ゲームキャンバス -->
+            <div class="canvas-wrapper">
+                <canvas id="gameCanvas" width="800" height="400"></canvas>
+                
+                <!-- スタート画面 -->
+                <div id="startScreen" class="overlay-screen">
+                    <h2>ジャンプアドベンチャー</h2>
+                    <p class="instructions">
+                        ゴールを目指せ！<br>
+                        敵を踏んで倒そう！<br>
+                        コインを集めよう！
+                    </p>
+                    <button class="game-button" onclick="startGame()">ゲームスタート</button>
+                </div>
+
+                <!-- ゲームオーバー画面 -->
+                <div id="gameOverScreen" class="overlay-screen" style="display: none;">
+                    <h2>ゲームオーバー</h2>
+                    <div class="result">
+                        <p class="final-score">スコア: <span id="finalScore">0</span></p>
+                        <p class="final-coins">コイン: <span id="finalCoins">0</span></p>
+                    </div>
+                    <div class="button-group">
+                        <button class="game-button retry" onclick="restartGame()">もう一度</button>
+                        <button class="game-button home" onclick="location.href='index.html'">ホームへ</button>
+                    </div>
+                </div>
+
+                <!-- クリア画面 -->
+                <div id="clearScreen" class="overlay-screen" style="display: none;">
+                    <h2>🎉 ステージクリア！ 🎉</h2>
+                    <div class="result">
+                        <p class="final-score">スコア: <span id="clearScore">0</span></p>
+                        <p class="final-coins">コイン: <span id="clearCoins">0</span></p>
+                    </div>
+                    <div class="button-group">
+                        <button class="game-button retry" onclick="restartGame()">もう一度</button>
+                        <button class="game-button home" onclick="location.href='index.html'">ホームへ</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- モバイル用仮想ボタン -->
+            <div class="mobile-controls" id="mobileControls">
+                <div class="dpad">
+                    <button class="control-btn btn-left" id="btnLeft">◀</button>
+                    <button class="control-btn btn-right" id="btnRight">▶</button>
+                </div>
+                <div class="action-btns">
+                    <button class="control-btn btn-jump" id="btnJump">ジャンプ</button>
+                </div>
+            </div>
+
+            <!-- 操作説明 -->
+            <div class="controls-info">
+                <p>🎮 <strong>PC:</strong> 矢印キー ←→ で移動、↑ or スペースでジャンプ</p>
+                <p>📱 <strong>モバイル:</strong> 画面下のボタンで操作</p>
+                <p>⭐ <strong>ルール:</strong> 敵の頭を踏むと倒せる！横から当たるとダメージ！</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="mario.js"></script>
+</body>
+</html>
