@@ -251,9 +251,108 @@ header h1 {
 }
 
 /* モバイル対応 */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        border-radius: 20px;
+    }
+
+    header {
+        padding: 15px;
+    }
+
     header h1 {
-        font-size: 22px;
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+
+    .back-button {
+        padding: 6px 10px;
+        font-size: 11px;
+        left: 10px;
+    }
+
+    .game-area {
+        padding: 20px 15px;
+    }
+
+    .game-info {
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+
+    .info-item {
+        font-size: 16px;
+    }
+
+    .canvas-wrapper {
+        margin-bottom: 15px;
+    }
+
+    .mobile-controls {
+        display: flex;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .control-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 16px;
+    }
+
+    .btn-jump {
+        width: 80px;
+    }
+
+    .overlay-screen {
+        padding: 20px;
+    }
+
+    .overlay-screen h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .instructions {
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .final-score, .final-coins {
+        font-size: 20px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .game-button {
+        width: 100%;
+        padding: 12px 30px;
+        font-size: 16px;
+    }
+
+    .controls-info {
+        padding: 12px;
+    }
+
+    .controls-info p {
+        font-size: 12px;
+        margin: 6px 0;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    header h1 {
+        font-size: 24px;
     }
 
     .back-button {
