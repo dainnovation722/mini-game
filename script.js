@@ -28,7 +28,7 @@ const growthStages = [
         maxAge: 71,
         emoji: '👧',
         stageName: '幼児',
-        messages: 
+        messages: [
             'ごはん、おいしい！',
             'あそんで、あそんで～！',
             'もも、げんきだよ！',
