@@ -6,8 +6,42 @@ let gameState = {
     energy: 100,      // 体力 (0-100)
     stage: 0,         // 成長段階 (0:赤ちゃん, 1:幼児, 2:子供, 3:少年少女, 4:大人)
     cleanliness: 100, // 清潔さ
-    isGameOver: false
+    isGameOver: false,
+    criticalCounters: {
+        hunger: 0,
+        happiness: 0,
+        energy: 0,
+        cleanliness: 0
+    }
 };
+
+const CRITICAL_DURATION_THRESHOLD = 5;
+const criticalStatusConfigs = [
+    {
+        key: 'hunger',
+        check: () => gameState.hunger <= 0,
+        warning: '⚠️ お腹が空きすぎています！すぐにごはんをあげて！',
+        death: '飢え'
+    },
+    {
+        key: 'happiness',
+        check: () => gameState.happiness <= 20,
+        warning: '😢 ももちゃんが悲しそう...遊んであげよう！',
+        death: '孤独'
+    },
+    {
+        key: 'energy',
+        check: () => gameState.energy <= 20,
+        warning: '💤 すごく疲れてるみたい...休ませてあげよう',
+        death: '疲労'
+    },
+    {
+        key: 'cleanliness',
+        check: () => gameState.cleanliness <= 30,
+        warning: '🧹 お部屋が汚れてきた...掃除しよう！',
+        death: '不衛生'
+    }
+];
 
 // 成長段階の定義
 const growthStages = [
@@ -73,12 +107,31 @@ const growthStages = [
     }
 ];
 
+function ensureCriticalCounters() {
+    if (!gameState.criticalCounters) {
+        gameState.criticalCounters = {
+            hunger: 0,
+            happiness: 0,
+            energy: 0,
+            cleanliness: 0
+        };
+        return;
+    }
+
+    for (const key of Object.keys(gameState.criticalCounters)) {
+        if (typeof gameState.criticalCounters[key] !== 'number') {
+            gameState.criticalCounters[key] = 0;
+        }
+    }
+}
+
 // ゲーム初期化
 function initGame() {
     // 保存データがあればロード
     const savedGame = localStorage.getItem('momoGameSave');
     if (savedGame) {
         gameState = JSON.parse(savedGame);
+        ensureCriticalCounters();
         updateDisplay();
         showMessage('おかえり！ももちゃんが待ってたよ！');
     } else {
@@ -118,7 +171,7 @@ function gameLoop() {
             showRandomMessage();
         }
         
-    }, 3000); // 3秒ごとに更新（1ヶ月経過）
+    }, 2000); // 2秒ごとに更新（1ヶ月経過）
 }
 
 // 成長段階の更新
@@ -224,23 +277,32 @@ function cleanRoom() {
 
 // 危機的状態のチェック
 function checkCriticalStatus() {
-    if (gameState.hunger <= 0) {
-        showMessage('⚠️ お腹が空きすぎています！すぐにごはんをあげて！');
-        gameState.happiness = Math.max(0, gameState.happiness - 5);
-        gameState.energy = Math.max(0, gameState.energy - 5);
+    const counters = gameState.criticalCounters;
+
+    for (const config of criticalStatusConfigs) {
+        if (config.check()) {
+            counters[config.key] = (counters[config.key] ?? 0) + 1;
+            showMessage(config.warning);
+
+            if (config.key === 'hunger') {
+                gameState.happiness = Math.max(0, gameState.happiness - 5);
+                gameState.energy = Math.max(0, gameState.energy - 5);
+            }
+
+            if (counters[config.key] >= CRITICAL_DURATION_THRESHOLD) {
+                handleCriticalFailure(config.death);
+                return;
+            }
+        } else {
+            counters[config.key] = 0;
+        }
     }
-    
-    if (gameState.happiness <= 20) {
-        showMessage('😢 ももちゃんが悲しそう...遊んであげよう！');
-    }
-    
-    if (gameState.energy <= 20) {
-        showMessage('💤 すごく疲れてるみたい...休ませてあげよう');
-    }
-    
-    if (gameState.cleanliness <= 30) {
-        showMessage('🧹 お部屋が汚れてきた...掃除しよう！');
-    }
+}
+
+function handleCriticalFailure(reason) {
+    if (gameState.isGameOver) return;
+    gameState.isGameOver = true;
+    showMessage(`💀 ${reason}が5ヶ月以上続いてしまいました…ももちゃんは旅立ってしまったようです。`);
 }
 
 // ランダムメッセージ表示
@@ -321,6 +383,7 @@ function resetGame() {
             cleanliness: 100,
             isGameOver: false
         };
+        ensureCriticalCounters();
         updateDisplay();
         showMessage('新しいももちゃんが生まれました！');
     }
